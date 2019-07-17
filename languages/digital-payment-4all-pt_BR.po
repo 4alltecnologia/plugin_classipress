@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: pagamentos-digitais-4all-for-classipress 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-07-11 13:52-0300\n"
-"PO-Revision-Date: 2019-07-11 14:57-0300\n"
+"POT-Creation-Date: 2019-07-17 13:42-0300\n"
+"PO-Revision-Date: 2019-07-17 13:51-0300\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -108,6 +108,46 @@ msgid ""
 "environment"
 msgstr ""
 "Esta é sua chave privada para acessar o gateway 4all no ambiente de homolog"
+
+#: includes/class-digital-payment-4all.php:68
+msgid "Card holder name is a required field"
+msgstr "O nome do titular do cartão é um campo obrigatório"
+
+#: includes/class-digital-payment-4all.php:70
+msgid "Invalid holder name"
+msgstr "Nome do titular inválido"
+
+#: includes/class-digital-payment-4all.php:74
+msgid "Card number is a required field"
+msgstr "Número do cartão é um campo obrigatório"
+
+#: includes/class-digital-payment-4all.php:76
+msgid "Invalid card number"
+msgstr "Número de cartão inválido"
+
+#: includes/class-digital-payment-4all.php:80
+msgid "Buyer document is a required field"
+msgstr "O CPF do comprador é um campo obrigatório"
+
+#: includes/class-digital-payment-4all.php:82
+msgid "Invalid buyer document"
+msgstr "Documento do comprador inválido"
+
+#: includes/class-digital-payment-4all.php:86
+msgid "Expiration date is a required field"
+msgstr "A data de expiração é um campo obrigatório"
+
+#: includes/class-digital-payment-4all.php:88
+msgid "Invalid expiration date"
+msgstr "Data de expiração inválida"
+
+#: includes/class-digital-payment-4all.php:92
+msgid "Security code is a required field"
+msgstr "Código de segurança é um campo obrigatório"
+
+#: includes/class-digital-payment-4all.php:94
+msgid "Invalid security code"
+msgstr "Código de segurança inválido"
 
 #: includes/form-template.php:38
 msgid "Transaction failed:"

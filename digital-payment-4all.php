@@ -24,24 +24,24 @@
   * <https://www.gnu.org/licenses/gpl-2.0.txt>.
 */
 
-function init_setup(){
+function init_setup_4all_classipress(){
   load_plugin_textdomain('digital-payment-4all', false, dirname(plugin_basename( __FILE__ )) . '/languages/');
   include 'includes/class-digital-payment-4all.php';
 }
 
-function add_css() {
+function add_css_4all_classipress() {
   $basePluginName = plugin_basename(plugin_dir_path( __FILE__ ));
   $styleUrl = plugins_url( $basePluginName . '/assets/css/4all-style.css');
   wp_enqueue_style( 'app_4all_style', $styleUrl);
 }
 
-function add_js() {
+function add_js_4all_classipress() {
   $basePluginName = plugin_basename(plugin_dir_path( __FILE__ ));
   $scriptUrl = plugins_url( $basePluginName . '/assets/js/4all-scripts.js');
   wp_enqueue_script( 'app_4all_script', $scriptUrl, array('jquery'));
 }
 
-add_action( 'wp_enqueue_scripts', 'add_css' );
-add_action( 'wp_footer', 'add_js' );
+add_action( 'wp_enqueue_scripts', 'add_css_4all_classipress' );
+add_action( 'wp_footer', 'add_js_4all_classipress' );
 
-add_action( 'init', 'init_setup' );
+add_action( 'init', 'init_setup_4all_classipress' );

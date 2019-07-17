@@ -36,7 +36,7 @@
 ?>
 <div class="error-box">
   <p class="error-title"><?= __('Transaction failed:', 'digital-payment-4all') ?></p>
-  <p><?= __('Sorry, something goes wrong with your transaction. Please, try again.', 'digital-payment-4all') ?></p>
+  <p><?= $fieldError ? $fieldError : __('Sorry, something goes wrong with your transaction. Please, try again.', 'digital-payment-4all') ?></p>
 </div>
 <?php
     $transactionError = false;

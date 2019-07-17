@@ -62,27 +62,65 @@ class APP_Gateway_4all extends APP_Gateway {
 		$cancelUrl = $order->get_cancel_url();
 
 		if (isset( $_POST['completeTransaction'] )) {
-			$paymentData = [
-				"cardData" => [
-					"cardholderName" => $_REQUEST["cardholderName"],
-					"buyerDocument" => str_replace(array('.', '-', ' '), '', $_REQUEST["buyerDocument"]),
-					"cardNumber" => $_REQUEST["cardNumber"],
-					"expirationDate" => $_REQUEST["expirationDate"],
-					"securityCode" => $_REQUEST["securityCode"]
-					],
-				"installment" => $_REQUEST['installment'],
-				"total" => (int)$order->get_total() * 100,
-				"metaId" => "" . $order->get_id(),
-			];
+			$fieldError = null;
 
-			$tryPay = $gateway_4all->paymentFlow_4all($paymentData);
+			if (empty($_REQUEST["cardholderName"])) {
+				$fieldError = __('Card holder name is a required field', 'digital-payment-4all');
+			} elseif (!preg_match('/([A-z])/', $_REQUEST['cardholderName']) || strlen($_REQUEST['cardholderName']) < 2 || strlen($_REQUEST['cardholderName']) > 28) {
+				$fieldError = __('Invalid holder name', 'digital-payment-4all');
+			}
 
-			if ($tryPay["error"]) {
+			if (empty( $_REQUEST['cardNumber'] )) {
+				$fieldError = __('Card number is a required field', 'digital-payment-4all');
+			} elseif (!preg_match('/([0-9])/', $_REQUEST['cardNumber']) || strlen($_REQUEST['cardNumber']) < 12 || strlen($_REQUEST['cardNumber']) > 19) {
+				$fieldError = __('Invalid card number', 'digital-payment-4all');
+			}
+
+			if (empty( $_REQUEST['buyerDocument'] )) {
+				$fieldError = __('Buyer document is a required field', 'digital-payment-4all');
+			} elseif (!preg_match('/([0-9])/', $_REQUEST['buyerDocument']) || strlen($_REQUEST['buyerDocument']) < 14 || strlen($_REQUEST['buyerDocument']) > 14) {
+				$fieldError = __('Invalid buyer document', 'digital-payment-4all');
+			}
+
+			if (empty( $_REQUEST['expirationDate'] )) {
+				$fieldError = __('Expiration date is a required field', 'digital-payment-4all');
+			} elseif (!preg_match('/([0-1]{1}[0-9]{1}[\/]{1}[0-9])/', $_REQUEST['expirationDate']) || strlen($_REQUEST['expirationDate']) != 5) {
+				$fieldError = __('Invalid expiration date', 'digital-payment-4all');
+			}
+
+			if (empty( $_REQUEST['securityCode'] )) {
+				$fieldError = __('Security code is a required field', 'digital-payment-4all');
+			} elseif (!preg_match('/([0-9])/', $_REQUEST['securityCode']) || strlen($_REQUEST['securityCode']) < 3 || strlen($_REQUEST['securityCode']) > 4) {
+				$fieldError = __('Invalid security code', 'digital-payment-4all');
+			}
+
+			if ($fieldError) {
 				$order->failed();
 				$transactionError = true;
 				require_once 'form-template.php';
 			} else {
-				$order->complete();;
+				$paymentData = [
+					"cardData" => [
+						"cardholderName" => sanitize_text_field($_REQUEST["cardholderName"]),
+						"buyerDocument" => sanitize_text_field(str_replace(array('.', '-', ' '), '', $_REQUEST["buyerDocument"])),
+						"cardNumber" => sanitize_text_field(str_replace(array('.', '-', ' '), '', $_REQUEST["cardNumber"])),
+						"expirationDate" => sanitize_text_field($_REQUEST["expirationDate"]),
+						"securityCode" => sanitize_text_field($_REQUEST["securityCode"]),
+					],
+					"installment" => sanitize_text_field($_REQUEST['installment']),
+					"total" => (float)$order->get_total() * 100,
+					"metaId" => "" . $order->get_id(),
+				];
+	
+				$tryPay = $gateway_4all->paymentFlow_4all($paymentData);
+	
+				if ($tryPay["error"]) {
+					$order->failed();
+					$transactionError = true;
+					require_once 'form-template.php';
+				} else {
+					$order->complete();
+				}
 			}
 		} else {
 			require_once 'form-template.php';
