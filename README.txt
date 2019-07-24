@@ -1,11 +1,13 @@
 === 4all Plugin to classipress ===
-Contributors: 4all <br/>
-Tags: classipress, 4all, payment, gateway, plugin<br/>
-Requires at least: 4.0<br/>
-Tested up to: 5.2<br/>
-Stable tag: 1.0.0<br/>
-License: GPLv2 or later<br/>
-License URI: http://www.gnu.org/licenses/gpl-2.0.html<br/>
+Contributors: 4alltecnologia
+Donate link: We don't have a donate link
+Tags: classipress, 4all, payment, gateway, plugin
+Requires at least: 4.0
+Requires PHP: 7.0.33
+Tested up to: 5.2
+Stable tag: 1.0.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
 4all gateway for theme classipress designed by AppThemes.
 
@@ -28,7 +30,7 @@ Você pode esclarecer suas dúvidas usando:
 *   Criando um tópico no  [fórum do Github](#).
 
 = Colaborar =
-Você pode contribuir com código-fonte em nossa página no  [GitHub](#). Caso não saiba por onde começar, [aqui](https://www.youtube.com/watch?v=z8rLQsoUeHc) você pode encontrar um vídeo tutorial para ajuda-lo a instalar o Wordpress no seu localhost.
+Você pode contribuir com código-fonte em nossa página no  [GitHub](#). Caso não saiba por onde começar, [aqui](https://www.youtube.com/watch?v=z8rLQsoUeHc) você pode encontrar um vídeo tutorial para ajuda-lo a instalar o WordPress no seu localhost.
 
 == Instalação ==
 
@@ -48,3 +50,25 @@ Preencha as opção de  MerchantKey  que você vai receber por e-mail após se c
 Você também pode ativar o modo Sandbox e adicionar sua MerchantKey de homolog, isso permite você fazer as chamadas para o ambiente de homologação caso queira fazer alguns testes antes de ir para produção.
 
 Pronto, sua loja já pode receber pagamentos pela 4all.
+
+== Frequently Asked Questions ==
+
+= Para utilizar basta só baixar o aplicativo? =
+Não, é necessário também contratar o Gateway da 4all para receber as chaves de acesso que devem ser informadas nas configurações do plugin
+
+== Screenshots ==
+
+1. Tela do checkout
+2. Painel do administrador
+
+== Upgrade Notice ==
+
+= 1.0.0 =
+Primeira versão estável do plugin
+
+== Changelog ==
+
+= 1.0.0 =
+* Adiciona "pagamentos digitais 4all" como uma forma de pagamento no tema classipress
+* Linguagem em português brasileiro e em inglês
+* Modo de sandbox
